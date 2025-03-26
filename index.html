@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockStar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="icon2.png" type="image/x-icon">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-black py-4 px-6 flex justify-between items-center">
+        <div class="text-2xl font-stretch-125% hover:animate-bounce"><a href="https://www.rockstargames.com/" target="_blank">ROCKSTAR</a>
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="hover:text-blue-500 font-bold">Home</a></li>
+            <li><a href="#" class="hover:text-blue-500 font-bold">About</a></li>
+            <li><a href="#" class="hover:text-blue-500 font-bold">Services</a></li>
+            <li><a href="#" class="hover:text-blue-500 font-bold">Join Us</a></li>
+            <li><a href="#" class="hover:text-blue-500 font-bold">Contact</a></li>
+        </ul>
+        <input type="text" placeholder="Search" class="py-1 px-3 rounded border-2 bg-black text-gray-200 focus:outline-none">
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-96 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1500');">
+        <div class="bg-[url(back1.jpg)] bg-cover  absolute inset-0  flex flex-col justify-center items-center">
+           <div class="py-6 justify-end  rounded">
+            <h1 class="text-4xl font-bold animate-bounce">Welcome To Level Up RockStar!</h1>
+            <p class="text-lg mt-2 text-center max-w-xl">A Rockstar is someone who excels in their field with exceptional skills, passion, and dedication. They are known for their standout performance, creativity, and ability to inspire others.</p>
+            <button class="mt-4 px-6 py-2 border-2 border-zinc-600  hover:bg-black rounded">Get Started</button>
+        </div> 
+        </div>
+    </section>
+
+    <!-- Top Esports Games -->
+    <section class="bg-[url(back2.jpg)]  bg-cover   py-12">
+        <h2 class="text-3xl font-bold text-center mb-8 animate-bounce">Top Rockstar Games(2010)</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Game Cards -->
+            <div class="bg-gray-900 p-6 rounded-lg hover:scale-105">
+              <!-- gta games  -->
+                <img src="gta3.jpeg" alt="PUBG" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold cursor-pointer">GTA 3</h3>
+                <p class="text-sm mt-2">gta Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, impedit....</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg  hover:scale-110">
+                <img src="gta4.jpeg" alt="Counter Strike" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold  cursor-pointer">GTA 4</h3>
+                <p class="text-sm mt-2">Countegta Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, impedit.......</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg  hover:scale-110">
+                <img src="gta5.jpeg" alt="Dota 2" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold cursor-pointer">GTA 5</h3>
+                <p class="text-sm mt-2">Dotagta Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, impedit.......</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg  hover:scale-110">
+                <img src="maxpayen.png" alt="Valorant" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold cursor-pointer">MAX PAYEN</h3>
+                <p class="text-sm mt-2">Valorantgta Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, impedit.......</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg  hover:scale-110">
+                <img src="red.jpeg" alt="Fortnite" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold cursor-pointer">RED DEAD REDEMTION 2</h3>
+                <p class="text-sm mt-2">gta Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, impedit.......</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg  hover:scale-110">
+                <img src="bully.jpeg   " alt="Call of Duty" class="w-full rounded">
+                <h3 class="mt-4 text-xl font-bold cursor-pointer">BULLY</h3>
+                <p class="text-sm mt-2">BULLY Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, molestiae....</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="bg-[url(back3.jpg)] bg-cover  bg-gray-800 py-12">
+        <h2 class="text-3xl font-bold text-center mb-8 animate-bounce text-black">Get In Touch</h2>
+        <form class="max-w-4xl mx-auto bg-gray-700 p-8 rounded-lg space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" placeholder="First Name" class="py-2 px-4 rounded bg-gray-800 text-gray-200 focus:outline-none">
+                <input type="text" placeholder="Last Name" class="py-2 px-4 rounded bg-gray-800 text-gray-200 focus:outline-none">
+            </div>
+            <input type="email" placeholder="Email Address" class="py-2 px-4 w-full rounded bg-gray-800 text-gray-200 focus:outline-none">
+            <input type="text" placeholder="Phone Number" class="py-2 px-4 w-full rounded bg-gray-800 text-gray-200 focus:outline-none">
+            <textarea placeholder="Address" class="py-2 px-4 w-full rounded bg-gray-800 text-gray-200 focus:outline-none"></textarea>
+            <button type="submit" class="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded">Submit</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <!-- Navbar -->
+    <nav class="bg-gray-800 py-6 px-6 flex justify-between items-center">
+      <div class="text-2xl font-extrabold ">ROCKSTAR</div>
+      <ul class="flex space-x-6">
+          <li><a href="#" class="hover:text-blue-500">Home</a></li>
+          <li><a href="#" class="hover:text-blue-500">About</a></li>
+          <li><a href="#" class="hover:text-blue-500">Services</a></li>
+          <li><a href="#" class="hover:text-blue-500">Join Us</a></li>
+          <li><a href="#" class="hover:text-blue-500">Contact</a></li>
+      </ul>
+      <footer class="bg-gray-800 py-6 text-center text-sm">
+        <p>&copy; 2025. All rights reserved.</p>
+    </footer>
+      </nav>
+</body>
+</html>
