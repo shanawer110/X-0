@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X or O Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body id="gameBody" class="bg-gray-100 text-gray-800">
+  <!-- Form Container -->
+  <div id="formContainer" class="min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-96">
+      <h1 class="text-2xl font-bold text-center mb-4">Player Information</h1>
+      <form id="playerForm" class="space-y-4">
+        <div>
+          <label for="player1" class="block text-sm font-medium text-gray-700">Player 1 (X):</label>
+          <input type="text" id="player1" name="player1" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <div>
+          <label for="player2" class="block text-sm font-medium text-gray-700">Player 2 (O):</label>
+          <input type="text" id="player2" name="player2" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Game Container -->
+  <div id="gameContainer" class="min-h-screen flex items-center justify-center hidden">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h1 class="text-2xl font-bold text-center mb-4">X or O Game</h1>
+      <p id="currentPlayer" class="text-lg font-semibold text-center mb-4"></p>
+      <div class="flex flex-col items-center">
+        <div id="board" class="grid grid-cols-3 gap-4 w-64 mb-4">
+          <!-- Cells -->
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+          <div class="w-20 h-20 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer" data-cell></div>
+        </div>
+        <button id="restartButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition">
+          Restart Game
+        </button>
+        <p id="winnerMessage" class="mt-4 text-center text-lg font-bold hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const formContainer = document.getElementById('formContainer');
+    const gameContainer = document.getElementById('gameContainer');
+    const playerForm = document.getElementById('playerForm');
+    const board = document.getElementById('board');
+    const cells = board.querySelectorAll('[data-cell]');
+    const restartButton = document.getElementById('restartButton');
+    const winnerMessage = document.getElementById('winnerMessage');
+    const currentPlayerDisplay = document.getElementById('currentPlayer');
+    const gameBody = document.getElementById('gameBody');
+
+    let isXTurn = true;
+    let player1Name = '';
+    let player2Name = '';
+
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    playerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      player1Name = document.getElementById('player1').value;
+      player2Name = document.getElementById('player2').value;
+      formContainer.classList.add('hidden');
+      gameContainer.classList.remove('hidden');
+      updateCurrentPlayerDisplay();
+    });
+
+    function handleClick(e) {
+      const cell = e.target;
+      const currentClass = isXTurn ? 'X' : 'O';
+      cell.textContent = currentClass;
+      cell.classList.add(currentClass);
+      cell.classList.add('pointer-events-none');
+      if (checkWin(currentClass)) {
+        endGame(false, currentClass);
+      } else if (Array.from(cells).every(cell => cell.textContent)) {
+        endGame(true);
+      } else {
+        isXTurn = !isXTurn;
+        updateCurrentPlayerDisplay();
+      }
+    }
+
+    function checkWin(currentClass) {
+      return winningCombinations.some(combination => {
+        return combination.every(index => {
+          return cells[index].textContent === currentClass;
+        });
+      });
+    }
+
+    function endGame(draw, winner) {
+      if (draw) {
+        winnerMessage.textContent = 'It\'s a Draw!';
+        gameBody.className = 'bg-gray-800 text-gray-100';
+      } else {
+        const winnerName = winner === 'X' ? player1Name : player2Name;
+        winnerMessage.textContent = `${winnerName} Wins!`;
+        gameBody.className = 'bg-white text-gray-800';
+      }
+      winnerMessage.classList.remove('hidden');
+      cells.forEach(cell => cell.classList.add('pointer-events-none'));
+      currentPlayerDisplay.textContent = '';
+    }
+
+    function restartGame() {
+      cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('pointer-events-none', 'X', 'O');
+      });
+      winnerMessage.classList.add('hidden');
+      isXTurn = true;
+      gameBody.className = 'bg-gray-100 text-gray-800';
+      updateCurrentPlayerDisplay();
+    }
+
+    function updateCurrentPlayerDisplay() {
+      const currentPlayerName = isXTurn ? player1Name : player2Name;
+      currentPlayerDisplay.textContent = `Current Turn: ${currentPlayerName}`;
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', handleClick);
+    });
+
+    restartButton.addEventListener('click', restartGame);
+  </script>
+</body>
+</html>
